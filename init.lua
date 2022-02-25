@@ -14,14 +14,15 @@ vim.cmd [[
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
-  use 'tpope/vim-fugitive' -- Git commands in nvim
-  use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
+  -- use 'tpope/vim-fugitive' -- Git commands in nvim
+  -- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'ludovicchabant/vim-gutentags' -- Automatic tags management
+  -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
+  -- use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
+  use "lunarvim/onedarker.nvim"
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   -- Add indentation guides even on blank lines
   use 'lukas-reineke/indent-blankline.nvim'
@@ -31,15 +32,19 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter'
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  -- use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  -- Simple to use language server installer
+  use { 'williamboman/nvim-lsp-installer', requires = { 'neovim/nvim-lspconfig'} }
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  -- Tree Explorer
+  use { "kyazdani42/nvim-tree.lua", requires = { 'kyazdani42/nvim-web-devicons' } }
 end)
 
 --Set highlight on search
-vim.o.hlsearch = false
+-- vim.o.hlsearch = false
 
 --Make line numbers default
 vim.wo.number = true
@@ -63,7 +68,10 @@ vim.wo.signcolumn = 'yes'
 
 --Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme onedarker]]
+
+-- Allows neovim to access the system clipboard
+vim.o.clipboard = "unnamedplus"
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -195,13 +203,15 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- Diagnostic keymaps
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
 
 -- LSP settings
-local lspconfig = require 'lspconfig'
+-- local lspconfig = require 'lspconfig'
+local lsp_installer = require("nvim-lsp-installer")
+
 local on_attach = function(_, bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -224,53 +234,71 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
+-- Register a handler that will be called for all installed servers.
+lsp_installer.on_server_ready(function(server)
+	local opts = { on_attach = on_attach, capabilities = capabilities }
 
--- Example custom server
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
+  if server.name == "sumneko_lua" then
+    -- Example custom server
+    -- Make runtime files discoverable to the server
+    local runtime_path = vim.split(package.path, ';')
+    table.insert(runtime_path, 'lua/?.lua')
+    table.insert(runtime_path, 'lua/?/init.lua')
+    local sumneko_opts = {
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            path = runtime_path,
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { 'vim' },
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file('', true),
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
+        }
+      }
+    }
 
-lspconfig.sumneko_lua.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
+    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  end
+	-- This setup() function is exactly the same as lspconfig's setup function.
+	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	server:setup(opts)
+end)
+
+local signs = {
+  { name = "DiagnosticSignError", text = "" },
+  { name = "DiagnosticSignWarn", text = "" },
+  { name = "DiagnosticSignHint", text = "" },
+  { name = "DiagnosticSignInfo", text = "" },
 }
 
+for _, sign in ipairs(signs) do
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+end
+
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = {
+    active = signs
+  }
+})
+
 -- luasnip setup
-local luasnip = require 'luasnip'
+local luasnip = require('luasnip')
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
+local cmp = require('cmp')
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -312,4 +340,20 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+local ntree = require('nvim-tree')
+ntree.setup {
+  disable_netrw = true,
+  auto_close = true,
+  diagnostics = {
+    enable = true,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
+  }
+}
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
 -- vim: ts=2 sts=2 sw=2 et
