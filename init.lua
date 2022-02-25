@@ -60,6 +60,9 @@ vim.o.breakindent = true
 --Save undo history
 vim.opt.undofile = true
 
+-- Highlight the current line
+vim.opt.cursorline = true
+
 --Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -70,6 +73,8 @@ vim.wo.signcolumn = 'yes'
 
 --Set colorscheme
 vim.o.termguicolors = true
+-- the font used in graphical neovim applications
+vim.opt.guifont = "MesloLGS Nerd Font:h14"
 vim.cmd [[colorscheme onedarker]]
 
 -- Allows neovim to access the system clipboard
@@ -343,9 +348,9 @@ cmp.setup {
   },
 }
 
-local ntree = require('nvim-tree')
-ntree.setup {
+require('nvim-tree').setup {
   disable_netrw = true,
+  update_cwd = true,
   auto_close = true,
   diagnostics = {
     enable = true,
@@ -360,21 +365,20 @@ ntree.setup {
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Bufferline Setup
-local bufferline = require('bufferline')
-bufferline.setup({
+require('bufferline').setup {
   options = {
     offsets = { { filetype = 'NvimTree', text = '', padding = 1 } },
   }
-})
+}
+
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
 -- Navigate buffers
 keymap('n', '<S-l>', '<cmd> bnext <CR>', opts)
 keymap('n', '<S-h>', '<cmd> bprevious <CR>', opts)
-keymap('n', '<leader>c', '<cmd> Bdelete <cr>', opts)
+keymap('n', '<leader>bd', '<cmd> Bdelete <cr>', opts)
 -- Move text up and down
 keymap('n', '<A-j>', '<Esc>:m .+1<CR>==gi', opts)
 keymap('n', '<A-k>', '<Esc>:m .-2<CR>==gi', opts)
