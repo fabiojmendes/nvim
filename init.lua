@@ -29,9 +29,7 @@ require('packer').startup(function(use)
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use 'nvim-treesitter/nvim-treesitter'
-  -- Additional textobjects for treesitter
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use { 'nvim-treesitter/nvim-treesitter', requires = { 'nvim-treesitter/nvim-treesitter-textobjects'} }
   -- use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   -- Simple to use language server installer
   use { 'williamboman/nvim-lsp-installer', requires = { 'neovim/nvim-lspconfig'} }
@@ -43,6 +41,7 @@ require('packer').startup(function(use)
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   -- Buffer Line
   use { 'akinsho/bufferline.nvim', requires = { 'moll/vim-bbye' } }
+  use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
 end)
 
 --Set highlight on search
@@ -392,4 +391,7 @@ keymap('v', '>', '>gv', opts)
 keymap('v', '<A-j>', ':m .+1<CR>==', opts)
 keymap('v', '<A-k>', ':m .-2<CR>==', opts)
 keymap('v', 'p', '"_dP', opts)
+
+-- Auto pairs
+require('nvim-autopairs').setup()
 -- vim: ts=2 sts=2 sw=2 et
