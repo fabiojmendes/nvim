@@ -51,10 +51,10 @@ end)
 vim.wo.number = true
 
 --Enable mouse mode
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
 
 --Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 --Save undo history
 vim.opt.undofile = true
@@ -63,24 +63,29 @@ vim.opt.undofile = true
 vim.opt.cursorline = true
 
 --Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 --Decrease update time
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 --Set colorscheme
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 -- the font used in graphical neovim applications
 vim.opt.guifont = "MesloLGS Nerd Font:h14"
 vim.cmd [[colorscheme onedarker]]
 
 -- Allows neovim to access the system clipboard
-vim.o.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = { 'menuone', 'noselect' }
+vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
+vim.opt.wrap = false                            -- display lines as one long line
+vim.opt.scrolloff = 8                           -- is one of my fav
+vim.opt.sidescrolloff = 8
 
 --Set statusbar
 require('lualine').setup {
@@ -304,6 +309,35 @@ vim.diagnostic.config({
 local luasnip = require('luasnip')
 
 -- nvim-cmp setup
+--   פּ ﯟ   some other good icons
+local kind_icons = {
+  Text = "",
+  Method = "m",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "",
+  Interface = "",
+  Module = "",
+  Property = "",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
+
 local cmp = require('cmp')
 cmp.setup {
   snippet = {
@@ -312,9 +346,9 @@ cmp.setup {
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
@@ -339,6 +373,21 @@ cmp.setup {
       else
         fallback()
       end
+    end,
+  },
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(_, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- vim_item.menu = ({
+      --   nvim_lsp = "[LSP]",
+      --   luasnip = "[Snippet]",
+      --   buffer = "[Buffer]",
+      --   path = "[Path]",
+      -- })[entry.source.name]
+      return vim_item
     end,
   },
   sources = {
