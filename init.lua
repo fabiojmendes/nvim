@@ -42,6 +42,8 @@ require('packer').startup(function(use)
   -- Buffer Line
   use { 'akinsho/bufferline.nvim', requires = { 'moll/vim-bbye' } }
   use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
+  -- Which Key
+  use "folke/which-key.nvim"
 end)
 
 --Set highlight on search
@@ -86,6 +88,8 @@ vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.wrap = false                            -- display lines as one long line
 vim.opt.scrolloff = 8                           -- is one of my fav
 vim.opt.sidescrolloff = 8
+
+vim.opt.timeoutlen = 250
 
 --Set statusbar
 require('lualine').setup {
@@ -443,4 +447,8 @@ keymap('v', 'p', '"_dP', opts)
 
 -- Auto pairs
 require('nvim-autopairs').setup()
+
+-- Which Key
+require("which-key").setup()
+
 -- vim: ts=2 sts=2 sw=2 et
