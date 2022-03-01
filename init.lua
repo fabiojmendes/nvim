@@ -33,10 +33,13 @@ require('packer').startup(function(use)
   -- use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   -- Simple to use language server installer
   use { 'williamboman/nvim-lsp-installer', requires = { 'neovim/nvim-lspconfig'} }
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  -- Autocompletion plugin
+  use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'onsails/lspkind-nvim'
+
   -- Tree Explorer
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   -- Buffer Line
@@ -223,6 +226,86 @@ vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { 
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
 
+local signs = {
+  { name = 'DiagnosticSignError', text = '' },
+  { name = 'DiagnosticSignWarn', text = '' },
+  { name = 'DiagnosticSignHint', text = '' },
+  { name = 'DiagnosticSignInfo', text = '' },
+}
+
+for _, sign in ipairs(signs) do
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
+end
+
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = {
+    active = signs
+  }
+})
+
+-- luasnip setup
+local luasnip = require('luasnip')
+local lspkind = require('lspkind')
+
+local cmp = require('cmp')
+cmp.setup {
+  -- view = {
+  --   entries = 'native',
+  -- },
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  completion = {
+    keyword_length = 1,
+  },
+  mapping = {
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
+    ['<Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end,
+    ['<S-Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end,
+  },
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol',
+      maxwidth = 80,
+    }),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+  experimental = {
+    ghost_text = true,
+  },
+}
+
 -- LSP settings
 -- local lspconfig = require 'lspconfig'
 local lsp_installer = require('nvim-lsp-installer')
@@ -246,8 +329,8 @@ local on_attach = function(_, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local cmp_lsp = require('cmp_nvim_lsp')
+local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Register a handler that will be called for all installed servers.
 lsp_installer.on_server_ready(function(server)
@@ -291,114 +374,6 @@ lsp_installer.on_server_ready(function(server)
 	server:setup(opts)
 end)
 
-local signs = {
-  { name = 'DiagnosticSignError', text = '' },
-  { name = 'DiagnosticSignWarn', text = '' },
-  { name = 'DiagnosticSignHint', text = '' },
-  { name = 'DiagnosticSignInfo', text = '' },
-}
-
-for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
-end
-
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = {
-    active = signs
-  }
-})
-
--- luasnip setup
-local luasnip = require('luasnip')
-
--- nvim-cmp setup
---   פּ ﯟ   some other good icons
-local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
-
-local cmp = require('cmp')
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
-  },
-  formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(_, vim_item)
-      -- Kind icons
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-      -- vim_item.menu = ({
-      --   nvim_lsp = "[LSP]",
-      --   luasnip = "[Snippet]",
-      --   buffer = "[Buffer]",
-      --   path = "[Path]",
-      -- })[entry.source.name]
-      return vim_item
-    end,
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
 
 require('nvim-tree').setup {
   disable_netrw = true,
