@@ -239,6 +239,12 @@ end
 
 vim.diagnostic.config({
   virtual_text = false,
+  severity_sort = true,
+  float = {
+    border = 'rounded',
+    focusable = false,
+    header = '',
+  },
   signs = {
     active = signs
   }
@@ -250,9 +256,6 @@ local lspkind = require('lspkind')
 
 local cmp = require('cmp')
 cmp.setup {
-  -- view = {
-  --   entries = 'native',
-  -- },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
