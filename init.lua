@@ -91,6 +91,7 @@ vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.wrap = false                            -- display lines as one long line
 vim.opt.scrolloff = 8                           -- is one of my fav
 vim.opt.sidescrolloff = 8
+vim.opt.swapfile = false
 
 vim.opt.timeoutlen = 250
 
@@ -154,7 +155,10 @@ require('telescope').setup {
 }
 
 -- Enable telescope fzf native
-require('telescope').load_extension 'fzf'
+local telescope = require('telescope')
+if not pcall(telescope.load_extension, 'fzf') then
+  vim.notify('no fzf')
+end
 
 --Add leader shortcuts
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
@@ -310,7 +314,7 @@ cmp.setup {
 }
 
 -- LSP settings
--- local lspconfig = require 'lspconfig'
+local lspconfig = require('lspconfig')
 local lsp_installer = require('nvim-lsp-installer')
 
 local on_attach = function(_, bufnr)
@@ -335,17 +339,17 @@ end
 local cmp_lsp = require('cmp_nvim_lsp')
 local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+local lsp_opts = {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  handlers = {
+    ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'}),
+    ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'}),
+  }
+}
+
 -- Register a handler that will be called for all installed servers.
 lsp_installer.on_server_ready(function(server)
-	local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    handlers = {
-      ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'}),
-      ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'}),
-    }
-  }
-
   if server.name == 'sumneko_lua' then
     -- Example custom server
     -- Make runtime files discoverable to the server
@@ -377,12 +381,17 @@ lsp_installer.on_server_ready(function(server)
       }
     }
 
-    opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
+    local opts = vim.tbl_deep_extend('force', sumneko_opts, lsp_opts)
   end
-	-- This setup() function is exactly the same as lspconfig's setup function.
-	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	server:setup(opts)
+  -- This setup() function is exactly the same as lspconfig's setup function.
+  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+  server:setup(opts)
 end)
+
+-- FreeBSD doesn't support lsp_installer
+if vim.fn.has('bsd') then
+  lspconfig.rust_analyzer.setup(lsp_opts)
+end
 
 
 require('nvim-tree').setup {
