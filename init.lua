@@ -337,7 +337,14 @@ local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_ca
 
 -- Register a handler that will be called for all installed servers.
 lsp_installer.on_server_ready(function(server)
-	local opts = { on_attach = on_attach, capabilities = capabilities }
+	local opts = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    handlers = {
+      ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'}),
+      ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'}),
+    }
+  }
 
   if server.name == 'sumneko_lua' then
     -- Example custom server
