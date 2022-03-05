@@ -350,6 +350,7 @@ local lsp_opts = {
 
 -- Register a handler that will be called for all installed servers.
 lsp_installer.on_server_ready(function(server)
+  local opts = lsp_opts
   if server.name == 'sumneko_lua' then
     -- Example custom server
     -- Make runtime files discoverable to the server
@@ -381,7 +382,7 @@ lsp_installer.on_server_ready(function(server)
       }
     }
 
-    local opts = vim.tbl_deep_extend('force', sumneko_opts, lsp_opts)
+    opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
   end
   -- This setup() function is exactly the same as lspconfig's setup function.
   -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
