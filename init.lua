@@ -314,7 +314,6 @@ cmp.setup {
 }
 
 -- LSP settings
-local lspconfig = require('lspconfig')
 local lsp_installer = require('nvim-lsp-installer')
 
 local on_attach = function(_, bufnr)
@@ -390,7 +389,8 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 -- FreeBSD doesn't support lsp_installer
-if vim.fn.has('bsd') then
+if vim.fn.has('bsd') == 1 then
+  local lspconfig = require('lspconfig')
   lspconfig.rust_analyzer.setup(lsp_opts)
 end
 
