@@ -62,7 +62,7 @@ for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
 end
 
-vim.diagnostic.config({
+vim.diagnostic.config {
   virtual_text = false,
   severity_sort = true,
   float = {
@@ -71,15 +71,15 @@ vim.diagnostic.config({
     header = '',
   },
   signs = {
-    active = signs
-  }
-})
+    active = signs,
+  },
+}
 
 -- luasnip setup
-local luasnip = require('luasnip')
-local lspkind = require('lspkind')
+local luasnip = require 'luasnip'
+local lspkind = require 'lspkind'
 
-local cmp = require('cmp')
+local cmp = require 'cmp'
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -90,8 +90,8 @@ cmp.setup {
     keyword_length = 1,
   },
   mapping = {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -120,10 +120,10 @@ cmp.setup {
     end,
   },
   formatting = {
-    format = lspkind.cmp_format({
+    format = lspkind.cmp_format {
       mode = 'symbol',
       maxwidth = 50,
-    }),
+    },
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -135,29 +135,29 @@ cmp.setup {
 }
 
 -- nvim-cmp supports additional completion capabilities
-local cmp_lsp = require('cmp_nvim_lsp')
+local cmp_lsp = require 'cmp_nvim_lsp'
 local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local mappings = require('user.mappings')
+local mappings = require 'user.mappings'
 
 local lsp_opts = {
   on_attach = mappings.on_attach,
   capabilities = capabilities,
   handlers = {
-    ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'}),
-    ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'}),
-  }
+    ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+    ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
+  },
 }
 
 -- FreeBSD doesn't support lsp_installer
-if vim.fn.has('bsd') == 1 then
-  local lspconfig = require('lspconfig')
+if vim.fn.has 'bsd' == 1 then
+  local lspconfig = require 'lspconfig'
   lspconfig.rust_analyzer.setup(lsp_opts)
-	return
+  return
 end
 
 -- LSP settings
-local lsp_installer = require('nvim-lsp-installer')
+local lsp_installer = require 'nvim-lsp-installer'
 
 -- Register a handler that will be called for all installed servers.
 lsp_installer.on_server_ready(function(server)
@@ -189,8 +189,8 @@ lsp_installer.on_server_ready(function(server)
           telemetry = {
             enable = false,
           },
-        }
-      }
+        },
+      },
     }
 
     opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
@@ -199,4 +199,3 @@ lsp_installer.on_server_ready(function(server)
   -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   server:setup(opts)
 end)
-

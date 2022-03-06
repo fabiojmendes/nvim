@@ -27,7 +27,7 @@ vim.wo.signcolumn = 'yes'
 --Set colorscheme
 vim.opt.termguicolors = true
 -- the font used in graphical neovim applications
-vim.opt.guifont = "MesloLGS Nerd Font:h14"
+vim.opt.guifont = 'MesloLGS Nerd Font:h14'
 vim.cmd [[colorscheme onedarker]]
 
 -- Allows neovim to access the system clipboard
@@ -35,10 +35,10 @@ vim.opt.clipboard = 'unnamedplus'
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = { 'menuone', 'noselect' }
-vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
-vim.opt.wrap = false                            -- display lines as one long line
-vim.opt.scrolloff = 8                           -- is one of my fav
+vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 2 -- insert 2 spaces for a tab
+vim.opt.wrap = false -- display lines as one long line
+vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.swapfile = false
 
@@ -57,4 +57,3 @@ vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
-

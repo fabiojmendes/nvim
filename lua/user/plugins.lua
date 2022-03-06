@@ -20,7 +20,7 @@ require('packer').startup(function(use)
   -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
   use 'lunarvim/onedarker.nvim'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
@@ -29,10 +29,10 @@ require('packer').startup(function(use)
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use { 'nvim-treesitter/nvim-treesitter', requires = { 'nvim-treesitter/nvim-treesitter-textobjects'} }
+  use { 'nvim-treesitter/nvim-treesitter', requires = { 'nvim-treesitter/nvim-treesitter-textobjects' } }
   -- use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   -- Simple to use language server installer
-  use { 'williamboman/nvim-lsp-installer', requires = { 'neovim/nvim-lspconfig'} }
+  use { 'williamboman/nvim-lsp-installer', requires = { 'neovim/nvim-lspconfig' } }
   -- Autocompletion plugin
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -46,6 +46,5 @@ require('packer').startup(function(use)
   use { 'akinsho/bufferline.nvim', requires = { 'moll/vim-bbye' } }
   use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
   -- Which Key
-  use "folke/which-key.nvim"
+  use 'folke/which-key.nvim'
 end)
-

@@ -1,7 +1,7 @@
-require('user.plugins')
-require('user.options')
-require('user.mappings')
-require('user.coding')
+require 'user.plugins'
+require 'user.options'
+require 'user.mappings'
+require 'user.coding'
 
 --Set statusbar
 require('lualine').setup {
@@ -40,11 +40,10 @@ require('telescope').setup {
 }
 
 -- Enable telescope fzf native
-local telescope = require('telescope')
+local telescope = require 'telescope'
 if not pcall(telescope.load_extension, 'fzf') then
-  vim.notify('no fzf')
+  vim.notify 'no fzf'
 end
-
 
 require('nvim-tree').setup {
   disable_netrw = true,
@@ -58,14 +57,14 @@ require('nvim-tree').setup {
       warning = '',
       error = '',
     },
-  }
+  },
 }
 
 -- Bufferline Setup
 require('bufferline').setup {
   options = {
     offsets = { { filetype = 'NvimTree', text = '', padding = 1 } },
-  }
+  },
 }
 
 -- Auto pairs
