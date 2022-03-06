@@ -17,15 +17,7 @@ require('lualine').setup {
 require('Comment').setup()
 
 -- Gitsigns
-require('gitsigns').setup {
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-  },
-}
+require('gitsigns').setup()
 
 -- Telescope
 require('telescope').setup {
