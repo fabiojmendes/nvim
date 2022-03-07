@@ -51,6 +51,12 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+--Enable Comment.nvim
+require('Comment').setup()
+
+-- Auto pairs
+require('nvim-autopairs').setup()
+
 local signs = {
   { name = 'DiagnosticSignError', text = '' },
   { name = 'DiagnosticSignWarn', text = '' },
