@@ -54,7 +54,7 @@ keymap('v', 'p', '"_dP', opts)
 
 local M = {}
 
-M.on_attach = function(_, bufnr)
+M.lsp_mappings = function(_, bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
   vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
