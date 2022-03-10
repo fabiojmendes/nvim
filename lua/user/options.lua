@@ -37,6 +37,7 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.completeopt = { 'menuone', 'noselect' }
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert 2 spaces for a tab
+vim.opt.expandtab = true
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
