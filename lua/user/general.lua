@@ -43,7 +43,6 @@ end
 require('nvim-tree').setup {
   disable_netrw = true,
   update_cwd = true,
-  auto_close = true,
   diagnostics = {
     enable = true,
     icons = {
