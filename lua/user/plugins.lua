@@ -14,7 +14,7 @@ vim.cmd [[
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
-  use 'numToStr/Comment.nvim' -- 'gc' to comment visual regions/lines
+  use {'numToStr/Comment.nvim', tag = 'v0.6' } -- 'gc' to comment visual regions/lines
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
