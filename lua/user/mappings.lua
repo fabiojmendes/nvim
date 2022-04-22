@@ -17,6 +17,12 @@ wk.register({
   },
   e = { '<cmd>NvimTreeToggle<CR>', 'File Explorer' },
   c = { '<cmd>Bdelete<CR>', 'Close Buffer' },
+  t = {
+    name = 'File Tree',
+    r = { '<cmd>NvimTreeRefresh<CR>', 'Refresh' },
+    f = { '<cmd>NvimTreeFindFile<CR>', 'Find File' },
+    c = { '<cmd>NvimTreeCollapse<CR>', 'Collapse' },
+  },
 }, { prefix = '<leader>' })
 
 -- Diagnostic keymaps
