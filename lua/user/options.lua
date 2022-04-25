@@ -28,7 +28,7 @@ vim.wo.signcolumn = 'yes'
 vim.opt.termguicolors = true
 -- the font used in graphical neovim applications
 vim.opt.guifont = 'MesloLGS Nerd Font:h14'
-vim.cmd [[colorscheme onedarker]]
+vim.cmd 'colorscheme onedarker'
 
 -- Allows neovim to access the system clipboard
 vim.opt.clipboard = 'unnamedplus'
@@ -52,6 +52,15 @@ vim.cmd [[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
 ]]
+
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = 'go',
+  callback = function()
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.expandtab = false
+  end,
+})
 
 --Map blankline
 vim.g.indent_blankline_char = '┊'
