@@ -52,6 +52,9 @@ require('nvim-tree').setup {
       error = '',
     },
   },
+  git = {
+    ignore = false,
+  },
 }
 
 -- Bufferline Setup
