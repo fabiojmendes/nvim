@@ -14,6 +14,17 @@ M.setup = function(on_attach)
     },
   }
 
+  local nlspsettings = require("nlspsettings")
+
+  nlspsettings.setup({
+    config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
+    local_settings_dir = ".nlsp",
+    local_settings_root_markers = { '.git' },
+    append_default_schemas = true,
+    loader = 'json',
+  })
+
+
   -- FreeBSD doesn't support lsp_installer
   if vim.fn.has 'bsd' == 1 then
     local lspconfig = require 'lspconfig'
