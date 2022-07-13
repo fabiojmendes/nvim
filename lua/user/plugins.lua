@@ -18,10 +18,12 @@ require('packer').startup(function(use)
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use { 'nvim-lualine/lualine.nvim' } -- Fancier statusline
+  use { 'arkav/lualine-lsp-progress' }
   -- Themes
-  use { 'LunarVim/onedarker.nvim', commit = 'b00dd21' }
+  use { 'fabiojmendes/onedarker.nvim' }
   use { 'LunarVim/darkplus.nvim' }
+  use { 'EdenEast/nightfox.nvim' }
   -- Add indentation guides even on blank lines
   use 'lukas-reineke/indent-blankline.nvim'
   -- Add git related info in the signs columns and popups

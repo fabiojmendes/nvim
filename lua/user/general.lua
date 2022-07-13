@@ -16,6 +16,9 @@ require('lualine').setup {
       },
       'diagnostics',
     },
+    lualine_c = {
+      'lsp_progress',
+    },
   },
 }
 
