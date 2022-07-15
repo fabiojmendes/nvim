@@ -24,12 +24,13 @@ require('packer').startup(function(use)
   use { 'fabiojmendes/onedarker.nvim' }
   use { 'LunarVim/darkplus.nvim' }
   use { 'EdenEast/nightfox.nvim' }
+  use { 'olimorris/onedarkpro.nvim' }
   -- Add indentation guides even on blank lines
   use 'lukas-reineke/indent-blankline.nvim'
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use { 'nvim-treesitter/nvim-treesitter', requires = { 'nvim-treesitter/nvim-treesitter-textobjects' } }
+  use { 'nvim-treesitter/nvim-treesitter', requires = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/playground' } }
   -- use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   -- Simple to use language server installer
   use { 'williamboman/nvim-lsp-installer', requires = { 'neovim/nvim-lspconfig' } }

@@ -28,7 +28,7 @@ vim.wo.signcolumn = 'yes'
 vim.opt.termguicolors = true
 -- the font used in graphical neovim applications
 vim.opt.guifont = 'MesloLGS Nerd Font:h14'
-vim.cmd 'colorscheme onedarker'
+vim.cmd 'colorscheme onedarkpro'
 vim.cmd 'set laststatus=3'
 
 -- vim.opt.laststatus = 3
