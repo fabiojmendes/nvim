@@ -33,7 +33,12 @@ require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', requires = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/playground' } }
   -- use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   -- Simple to use language server installer
-  use { 'williamboman/nvim-lsp-installer', requires = { 'neovim/nvim-lspconfig' } }
+  use {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+  }
+
   use 'tamago324/nlsp-settings.nvim'
   -- Autocompletion plugin
   use 'hrsh7th/nvim-cmp'

@@ -32,29 +32,25 @@ M.setup = function(on_attach)
   end
 
   -- LSP settings
-  local lsp_installer = require 'nvim-lsp-installer'
+  local lspconfig = require 'lspconfig'
+  require('mason').setup()
+  require('mason-lspconfig').setup()
+  require('mason-lspconfig').setup_handlers {
+    function(server_name) -- default handler (optional)
+      lspconfig[server_name].setup(lsp_opts)
+    end,
+  }
 
-  -- Register a handler that will be called for all installed servers.
-  lsp_installer.on_server_ready(function(server)
-    local opts = lsp_opts
-    if server.name == 'sumneko_lua' then
-      -- Example custom server
-      local sumneko_opts = {
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' },
-            },
-          },
+  local sumneko_opts = vim.tbl_deep_extend('force', lsp_opts, {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim' },
         },
-      }
-
-      opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
-    end
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-  end)
+      },
+    },
+  })
+  lspconfig.sumneko_lua.setup(sumneko_opts)
 end
 
 return M
