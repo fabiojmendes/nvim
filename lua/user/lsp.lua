@@ -3,7 +3,7 @@ M = {}
 M.setup = function(on_attach)
   -- nvim-cmp supports additional completion capabilities
   local cmp_lsp = require 'cmp_nvim_lsp'
-  local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = cmp_lsp.default_capabilities()
 
   local lsp_opts = {
     on_attach = on_attach,
@@ -51,6 +51,13 @@ M.setup = function(on_attach)
     },
   })
   lspconfig.sumneko_lua.setup(sumneko_opts)
+
+  require("null-ls").setup({
+    debug = true,
+    sources = {
+      require('null-ls').builtins.formatting.black,
+    }
+  })
 end
 
 return M

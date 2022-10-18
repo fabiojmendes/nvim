@@ -39,6 +39,8 @@ require('packer').startup(function(use)
     'neovim/nvim-lspconfig',
   }
 
+  use 'jose-elias-alvarez/null-ls.nvim'
+
   use 'tamago324/nlsp-settings.nvim'
   -- Autocompletion plugin
   use 'hrsh7th/nvim-cmp'
