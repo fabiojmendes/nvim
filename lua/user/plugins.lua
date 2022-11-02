@@ -21,8 +21,8 @@ require('packer').startup(function(use)
   use { 'nvim-lualine/lualine.nvim' } -- Fancier statusline
   use { 'arkav/lualine-lsp-progress' }
   -- Themes
-  use { "lunarvim/Onedarker.nvim" }
-  -- use { 'fabiojmendes/onedarker.nvim' }
+  -- use { "lunarvim/onedarker.nvim" }
+  use { 'fabiojmendes/onedarker.nvim' }
   use { 'LunarVim/darkplus.nvim' }
   use { 'EdenEast/nightfox.nvim' }
   use { 'olimorris/onedarkpro.nvim' }
