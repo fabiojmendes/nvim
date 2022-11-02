@@ -21,7 +21,8 @@ require('packer').startup(function(use)
   use { 'nvim-lualine/lualine.nvim' } -- Fancier statusline
   use { 'arkav/lualine-lsp-progress' }
   -- Themes
-  use { 'fabiojmendes/onedarker.nvim' }
+  use { "lunarvim/Onedarker.nvim" }
+  -- use { 'fabiojmendes/onedarker.nvim' }
   use { 'LunarVim/darkplus.nvim' }
   use { 'EdenEast/nightfox.nvim' }
   use { 'olimorris/onedarkpro.nvim' }
@@ -30,7 +31,8 @@ require('packer').startup(function(use)
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use { 'nvim-treesitter/nvim-treesitter', requires = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/playground' } }
+  use { 'nvim-treesitter/nvim-treesitter',
+    requires = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/playground' } }
   -- use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   -- Simple to use language server installer
   use {
