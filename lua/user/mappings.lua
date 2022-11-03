@@ -61,7 +61,7 @@ keymap('v', 'p', '"_dP', opts)
 local M = {}
 
 M.lsp_mappings = function(_, bufnr)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
   vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
   wk.register({
@@ -73,7 +73,7 @@ M.lsp_mappings = function(_, bufnr)
       name = 'Lsp',
       a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
       r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
-      f = { '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', 'Format' },
+      f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
       e = { '<cmd>Telescope lsp_references<CR>', 'Search References' },
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Go to implementation' },
       I = { '<cmd>Telescope lsp_implementations<CR>', 'Search Implementations' },
