@@ -10,7 +10,8 @@ vim.g.maplocalleader = ' '
 wk.register({
   s = {
     name = 'Search',
-    f = { '<cmd>Telescope find_files<cr>', 'Find File' },
+    f = { '<cmd>Telescope find_files<cr>', 'Find Files' },
+    h = { '<cmd>Telescope find_files hidden=true<cr>', 'Find Hidden Files' },
     b = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Find in Buffer' },
     g = { '<cmd>Telescope grep_string<cr>', 'Grep' },
     d = { '<cmd>Telescope diagnostics<cr>', 'Diagnostics' },
