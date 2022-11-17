@@ -51,7 +51,6 @@ M.setup = function(on_attach)
     },
   })
   lspconfig.sumneko_lua.setup(sumneko_opts)
-
 end
 
 return M

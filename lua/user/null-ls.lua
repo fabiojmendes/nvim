@@ -1,14 +1,20 @@
-local null_ls = require 'null-ls'
+M = {}
 
--- register any number of sources simultaneously
-local sources = {
-  null_ls.builtins.formatting.black,
-  null_ls.builtins.diagnostics.fish,
-  null_ls.builtins.formatting.fish_indent,
-  null_ls.builtins.formatting.stylua,
-}
+M.setup = function(on_attach)
+  local null_ls = require 'null-ls'
 
-null_ls.setup {
-  sources = sources,
-  debug = true,
-}
+  -- register any number of sources simultaneously
+  local sources = {
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.diagnostics.fish,
+    null_ls.builtins.formatting.fish_indent,
+    null_ls.builtins.formatting.stylua,
+  }
+
+  null_ls.setup {
+    sources = sources,
+    on_attach = on_attach,
+  }
+end
+
+return M
