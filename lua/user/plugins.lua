@@ -2,17 +2,31 @@
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
 vim.cmd [[
   augroup Packer
     autocmd!
-    autocmd BufWritePost init.lua PackerCompile
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
 ]]
 
-require('packer').startup(function(use)
+local ok, packer = pcall(require, 'packer')
+if not ok then
+  return
+end
+
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require('packer.util').float { border = 'rounded' }
+    end,
+  },
+}
+
+packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use { 'numToStr/Comment.nvim' } -- 'gc' to comment visual regions/lines
   -- UI to select things (files, grep results, open buffers...)
