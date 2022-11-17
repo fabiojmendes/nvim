@@ -52,12 +52,6 @@ M.setup = function(on_attach)
   })
   lspconfig.sumneko_lua.setup(sumneko_opts)
 
-  require('null-ls').setup {
-    debug = true,
-    sources = {
-      require('null-ls').builtins.formatting.black,
-    },
-  }
 end
 
 return M

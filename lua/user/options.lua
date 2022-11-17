@@ -56,15 +56,6 @@ vim.cmd [[
   augroup end
 ]]
 
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = 'go',
-  callback = function()
-    vim.bo.shiftwidth = 4
-    vim.bo.tabstop = 4
-    vim.bo.expandtab = false
-  end,
-})
-
 --Map blankline
 vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
