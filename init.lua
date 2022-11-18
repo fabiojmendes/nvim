@@ -6,6 +6,7 @@ require('user.telescope')
 require('user.nvimtree')
 require('user.bufferline')
 require('user.coding')
+require('user.treesitter')
 
 local mappings = require('user.mappings')
 
