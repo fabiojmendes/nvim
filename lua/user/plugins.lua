@@ -51,7 +51,6 @@ packer.startup(function(use)
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use('nvim-treesitter/nvim-treesitter')
   use('nvim-treesitter/playground')
-  use('nvim-treesitter/nvim-treesitter-textobjects')
 
   -- Simple to use language server installer
   use({
