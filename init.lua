@@ -9,6 +9,7 @@ require('user.coding')
 require('user.treesitter')
 require('user.comment')
 require('user.autopairs')
+require('user.diagnostics')
 
 local mappings = require('user.mappings')
 
