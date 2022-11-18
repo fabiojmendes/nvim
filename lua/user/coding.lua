@@ -1,5 +1,3 @@
---Enable Comment.nvim
-require('Comment').setup()
 
 -- Auto pairs
 require('nvim-autopairs').setup()

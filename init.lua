@@ -7,6 +7,7 @@ require('user.nvimtree')
 require('user.bufferline')
 require('user.coding')
 require('user.treesitter')
+require('user.comment')
 
 local mappings = require('user.mappings')
 
