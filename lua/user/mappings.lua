@@ -1,4 +1,4 @@
-local wk = require 'which-key'
+local wk = require('which-key')
 wk.setup()
 
 --Remap space as leader key
@@ -27,19 +27,19 @@ wk.register({
 }, { prefix = '<leader>' })
 
 -- Diagnostic keymaps
-wk.register {
+wk.register({
   ['gl'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Line Diagnostic' },
   ['[d'] = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Prev Diagnostic' },
   [']d'] = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Next Diagnostic' },
   ['[g'] = { '<cmd>Gitsigns prev_hunk<CR>', 'Prev Git Diff' },
   [']g'] = { '<cmd>Gitsigns next_hunk<CR>', 'Next Git Diff' },
-}
+})
 
 -- Navigate buffers
-wk.register {
+wk.register({
   ['<S-l>'] = { '<cmd>bnext <CR>', 'Next Buffer' },
   ['<S-h>'] = { '<cmd>bprevious <CR>', 'Prev Buffer' },
-}
+})
 
 -- Shorten function name
 local opts = { noremap = true, silent = true }
@@ -62,7 +62,7 @@ keymap('v', 'p', '"_dP', opts)
 local M = {}
 
 M.lsp_mappings = function(_, bufnr)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
+  vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
   vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
   wk.register({

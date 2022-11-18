@@ -1,5 +1,5 @@
 --Set statusbar
-require('lualine').setup {
+require('lualine').setup({
   options = {
     icons_enabled = false,
   },
@@ -20,13 +20,13 @@ require('lualine').setup {
       'lsp_progress',
     },
   },
-}
+})
 
 -- Gitsigns
 require('gitsigns').setup()
 
 -- Telescope
-require('telescope').setup {
+require('telescope').setup({
   defaults = {
     mappings = {
       i = {
@@ -35,15 +35,15 @@ require('telescope').setup {
       },
     },
   },
-}
+})
 
 -- Enable telescope fzf native
-local telescope = require 'telescope'
+local telescope = require('telescope')
 if not pcall(telescope.load_extension, 'fzf') then
-  vim.notify 'no fzf'
+  vim.notify('no fzf')
 end
 
-require('nvim-tree').setup {
+require('nvim-tree').setup({
   disable_netrw = true,
   update_cwd = true,
   diagnostics = {
@@ -58,11 +58,11 @@ require('nvim-tree').setup {
   git = {
     ignore = false,
   },
-}
+})
 
 -- Bufferline Setup
-require('bufferline').setup {
+require('bufferline').setup({
   options = {
     offsets = { { filetype = 'NvimTree', text = '', padding = 1 } },
   },
-}
+})

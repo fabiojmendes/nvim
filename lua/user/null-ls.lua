@@ -1,7 +1,7 @@
 M = {}
 
 M.setup = function(on_attach)
-  local null_ls = require 'null-ls'
+  local null_ls = require('null-ls')
 
   -- register any number of sources simultaneously
   local sources = {
@@ -10,10 +10,10 @@ M.setup = function(on_attach)
     null_ls.builtins.formatting.fish_indent,
   }
 
-  null_ls.setup {
+  null_ls.setup({
     sources = sources,
     on_attach = on_attach,
-  }
+  })
 end
 
 return M

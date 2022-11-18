@@ -28,7 +28,7 @@ vim.wo.signcolumn = 'yes'
 vim.opt.termguicolors = true
 -- The font used in graphical neovim applications
 vim.opt.guifont = 'MesloLGS Nerd Font:h14'
-vim.cmd 'set laststatus=3'
+vim.cmd('set laststatus=3')
 
 -- vim.opt.laststatus = 3
 
@@ -47,12 +47,12 @@ vim.opt.swapfile = false
 
 vim.opt.timeoutlen = 250
 -- Highlight on yank
-vim.cmd [[
+vim.cmd([[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]]
+]])
 
 -- Map blankline
 vim.g.indent_blankline_char = '┊'
