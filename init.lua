@@ -3,6 +3,8 @@ require('user.plugins')
 require('user.general')
 require('user.lualine')
 require('user.gitsigns')
+require('user.telescope')
+require('user.nvimtree')
 require('user.coding')
 
 local mappings = require('user.mappings')
