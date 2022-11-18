@@ -8,7 +8,6 @@ M.setup = function(on_attach)
     null_ls.builtins.formatting.black,
     null_ls.builtins.diagnostics.fish,
     null_ls.builtins.formatting.fish_indent,
-    null_ls.builtins.formatting.stylua,
   }
 
   null_ls.setup {

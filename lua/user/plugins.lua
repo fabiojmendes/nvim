@@ -1,10 +1,4 @@
 -- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
-end
-
 vim.cmd [[
   augroup Packer
     autocmd!
@@ -12,22 +6,31 @@ vim.cmd [[
   augroup end
 ]]
 
-local ok, packer = pcall(require, 'packer')
-if not ok then
-  return
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
--- Have packer use a popup window
-packer.init {
+PACKER_BOOTSTRAP = ensure_packer()
+
+local packer = require('packer')
+packer.init({
   display = {
     open_fn = function()
-      return require('packer.util').float { border = 'rounded' }
+      return require("packer.util").float({ border = "rounded" })
     end,
   },
-}
+})
 
 packer.startup(function(use)
-  use 'wbthomason/packer.nvim' -- Package manager
+  use 'wbthomason/packer.nvim'
+  -- My plugins here
   use { 'numToStr/Comment.nvim' } -- 'gc' to comment visual regions/lines
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -46,8 +49,10 @@ packer.startup(function(use)
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use { 'nvim-treesitter/nvim-treesitter', requires = { 'nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter/playground' } }
-  -- use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use { 'nvim-treesitter/nvim-treesitter' }
+  use { 'nvim-treesitter/playground' }
+  -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+
   -- Simple to use language server installer
   use {
     'williamboman/mason.nvim',
@@ -72,4 +77,9 @@ packer.startup(function(use)
   use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
   -- Which Key
   use 'folke/which-key.nvim'
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
 end)

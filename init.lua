@@ -1,5 +1,10 @@
-require 'user.plugins'
 require 'user.options'
+require 'user.plugins'
+-- Packer not fully loaded
+if PACKER_BOOTSTRAP then
+  return
+end
+
 require 'user.general'
 require 'user.coding'
 
