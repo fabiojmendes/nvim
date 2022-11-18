@@ -1,7 +1,3 @@
-
--- Gitsigns
-require('gitsigns').setup()
-
 -- Telescope
 require('telescope').setup({
   defaults = {
