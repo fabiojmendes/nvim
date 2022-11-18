@@ -13,9 +13,5 @@ require('user.cmp')
 require('user.nlsp')
 
 local mappings = require('user.mappings')
-
-local lsp = require('user.lsp')
-lsp.setup(mappings.lsp_mappings)
-
-local null_ls = require('user.null-ls')
-null_ls.setup(mappings.lsp_mappings)
+require('user.lsp').setup(mappings.lsp_mappings)
+require('user.null-ls').setup(mappings.lsp_mappings)

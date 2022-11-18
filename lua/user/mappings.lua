@@ -1,8 +1,11 @@
+local M = {}
+
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Shorten function name
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
@@ -25,7 +28,7 @@ keymap('v', 'p', '"_dP', opts)
 
 local ok, wk = pcall(require, 'which-key')
 if not ok then
-  return
+  return M
 end
 
 wk.setup()
@@ -57,10 +60,6 @@ wk.register({
   ['[g'] = { '<cmd>Gitsigns prev_hunk<CR>', 'Prev Git Diff' },
   [']g'] = { '<cmd>Gitsigns next_hunk<CR>', 'Next Git Diff' },
 })
-
--- Shorten function name
-
-local M = {}
 
 M.lsp_mappings = function(_, bufnr)
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
