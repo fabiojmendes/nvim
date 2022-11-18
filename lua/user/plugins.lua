@@ -63,11 +63,13 @@ packer.startup(function(use)
 
   use('tamago324/nlsp-settings.nvim')
   -- Autocompletion plugin
-  use('hrsh7th/nvim-cmp')
-  use('hrsh7th/cmp-nvim-lsp')
-  use('saadparwaiz1/cmp_luasnip')
-  use('L3MON4D3/LuaSnip') -- Snippets plugin
-  use('onsails/lspkind-nvim')
+  use({
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
+    'onsails/lspkind-nvim'
+  })
 
   -- Tree Explorer
   use({ 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } })

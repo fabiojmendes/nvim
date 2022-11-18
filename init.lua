@@ -5,11 +5,11 @@ require('user.gitsigns')
 require('user.telescope')
 require('user.nvimtree')
 require('user.bufferline')
-require('user.coding')
 require('user.treesitter')
 require('user.comment')
 require('user.autopairs')
 require('user.diagnostics')
+require('user.cmp')
 
 local mappings = require('user.mappings')
 
