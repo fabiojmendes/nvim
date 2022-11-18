@@ -1,7 +1,10 @@
 M = {}
 
 M.setup = function(on_attach)
-  local null_ls = require('null-ls')
+  local ok, null_ls = pcall(require, 'null-ls')
+  if not ok then
+    return
+  end
 
   -- register any number of sources simultaneously
   local sources = {

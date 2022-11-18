@@ -10,6 +10,7 @@ require('user.comment')
 require('user.autopairs')
 require('user.diagnostics')
 require('user.cmp')
+require('user.nlsp')
 
 local mappings = require('user.mappings')
 

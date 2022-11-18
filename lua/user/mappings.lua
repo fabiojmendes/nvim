@@ -1,11 +1,34 @@
-local wk = require('which-key')
-wk.setup()
-
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+
+-- Navigate buffers
+keymap('n', '<S-l>', '<cmd>bnext <CR>', opts)
+keymap('n', '<S-h>', '<cmd>bprevious <CR>', opts)
+-- Move text up and down
+keymap('n', '<A-j>', '<Esc>:m .+1<CR>==', opts)
+keymap('n', '<A-k>', '<Esc>:m .-2<CR>==', opts)
+
+-- Visual --
+-- Stay in indent mode
+keymap('v', '<', '<gv', opts)
+keymap('v', '>', '>gv', opts)
+
+-- Move text up and down
+keymap('v', '<A-j>', ':m .+1<CR>==', opts)
+keymap('v', '<A-k>', ':m .-2<CR>==', opts)
+keymap('v', 'p', '"_dP', opts)
+
+local ok, wk = pcall(require, 'which-key')
+if not ok then
+  return
+end
+
+wk.setup()
 --Add leader shortcuts
 wk.register({
   s = {
@@ -35,29 +58,7 @@ wk.register({
   [']g'] = { '<cmd>Gitsigns next_hunk<CR>', 'Next Git Diff' },
 })
 
--- Navigate buffers
-wk.register({
-  ['<S-l>'] = { '<cmd>bnext <CR>', 'Next Buffer' },
-  ['<S-h>'] = { '<cmd>bprevious <CR>', 'Prev Buffer' },
-})
-
 -- Shorten function name
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
-
--- Move text up and down
-keymap('n', '<A-j>', '<Esc>:m .+1<CR>==', opts)
-keymap('n', '<A-k>', '<Esc>:m .-2<CR>==', opts)
-
--- Visual --
--- Stay in indent mode
-keymap('v', '<', '<gv', opts)
-keymap('v', '>', '>gv', opts)
-
--- Move text up and down
-keymap('v', '<A-j>', ':m .+1<CR>==', opts)
-keymap('v', '<A-k>', ':m .-2<CR>==', opts)
-keymap('v', 'p', '"_dP', opts)
 
 local M = {}
 
