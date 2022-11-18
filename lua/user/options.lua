@@ -62,5 +62,5 @@ vim.g.indent_blankline_show_trailing_blankline_indent = false
 
 -- Try to set the theme
 if not pcall(vim.cmd, 'colorscheme onedarker') then
-  vim.cmd('colorscheme slate')
+  vim.cmd('colorscheme habamax')
 end
