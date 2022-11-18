@@ -17,7 +17,7 @@ local ensure_packer = function()
   return false
 end
 
-PACKER_BOOTSTRAP = ensure_packer()
+local packer_bootstrap = ensure_packer()
 
 local packer = require('packer')
 packer.init({
@@ -80,7 +80,7 @@ packer.startup(function(use)
   use('folke/which-key.nvim')
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
+  if packer_bootstrap then
     require('packer').sync()
   end
 end)
