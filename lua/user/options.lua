@@ -30,8 +30,6 @@ vim.opt.termguicolors = true
 vim.opt.guifont = 'MesloLGS Nerd Font:h14'
 vim.cmd('set laststatus=3')
 
--- vim.opt.laststatus = 3
-
 -- Allows neovim to access the system clipboard
 -- vim.opt.clipboard = 'unnamedplus'
 

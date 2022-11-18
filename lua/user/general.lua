@@ -1,26 +1,3 @@
---Set statusbar
-require('lualine').setup({
-  options = {
-    icons_enabled = false,
-  },
-  sections = {
-    lualine_b = {
-      'branch',
-      {
-        'diff',
-        symbols = {
-          added = ' ',
-          modified = ' ',
-          removed = ' ',
-        },
-      },
-      'diagnostics',
-    },
-    lualine_c = {
-      'lsp_progress',
-    },
-  },
-})
 
 -- Gitsigns
 require('gitsigns').setup()
