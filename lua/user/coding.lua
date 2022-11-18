@@ -1,6 +1,4 @@
 
--- Auto pairs
-require('nvim-autopairs').setup()
 
 local signs = {
   { name = 'DiagnosticSignError', text = '' },

@@ -8,6 +8,7 @@ require('user.bufferline')
 require('user.coding')
 require('user.treesitter')
 require('user.comment')
+require('user.autopairs')
 
 local mappings = require('user.mappings')
 
