@@ -5,6 +5,32 @@ end
 
 -- Parsers must be installed manually via :TSInstall
 configs.setup({
+  ensure_installed = {
+    'bash',
+    'c',
+    'cmake',
+    'cpp',
+    'diff',
+    'dockerfile',
+    'fish',
+    'gitignore',
+    'go',
+    'java',
+    'javascript',
+    'json',
+    'json5',
+    'lua',
+    'make',
+    'markdown',
+    'python',
+    'regex',
+    'rust',
+    'sql',
+    'toml',
+    'typescript',
+    'vim',
+    'yaml',
+  },
   highlight = {
     enable = true, -- false will disable the whole extension
   },
