@@ -26,6 +26,9 @@ keymap('v', '<A-j>', ':m .+1<CR>==', opts)
 keymap('v', '<A-k>', ':m .-2<CR>==', opts)
 keymap('v', 'p', '"_dP', opts)
 
+-- Map esc to terminal window
+keymap('t', '<Esc>', '<C-\\><C-n>', opts)
+
 local ok, wk = pcall(require, 'which-key')
 if not ok then
   return M
@@ -45,7 +48,7 @@ wk.register({
   },
   e = { '<cmd>NvimTreeToggle<CR>', 'File Explorer' },
   c = { '<cmd>Bdelete<CR>', 'Close Buffer' },
-  C = { '<cmd>bufdo bd<CR>', 'Close All Buffers' },
+  C = { '<cmd>silent bufdo bd<CR>', 'Close All Buffers' },
   t = {
     name = 'File Tree',
     r = { '<cmd>NvimTreeRefresh<CR>', 'Refresh' },
