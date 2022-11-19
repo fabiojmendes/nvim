@@ -13,7 +13,6 @@ configs.setup({
     'diff',
     'dockerfile',
     'fish',
-    'gitignore',
     'go',
     'java',
     'javascript',
