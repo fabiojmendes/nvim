@@ -29,6 +29,9 @@ keymap('v', 'p', '"_dP', opts)
 -- Map esc to terminal window
 keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 
+-- Maps ctrl+c to Esc so it triggers abbreviations
+keymap('i', '<C-c>', '<Esc>', opts)
+
 local ok, wk = pcall(require, 'which-key')
 if not ok then
   return M
