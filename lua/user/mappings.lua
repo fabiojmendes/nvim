@@ -60,6 +60,14 @@ wk.register({
   },
 }, { prefix = '<leader>' })
 
+-- Clipboard Paste Mappings
+wk.register({
+  p = { '"+p', 'Paste from clipboard' },
+  P = { '"+P', 'Paste from clipboard' },
+  d = { '"+d', 'Cut to clipboard' },
+  y = { '"+y', 'Yank to clipboard' },
+}, { prefix = '<leader>', mode = { 'n', 'v' } })
+
 -- Diagnostic keymaps
 wk.register({
   ['gl'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Line Diagnostic' },

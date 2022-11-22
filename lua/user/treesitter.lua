@@ -6,7 +6,12 @@ end
 -- Parsers must be installed manually via :TSInstall
 configs.setup({
   ensure_installed = {
-    'bash', 'fish', 'lua', 'python', 'yaml', 'json'
+    'bash',
+    'fish',
+    'lua',
+    'python',
+    'yaml',
+    'json',
   },
   highlight = {
     enable = true, -- false will disable the whole extension
