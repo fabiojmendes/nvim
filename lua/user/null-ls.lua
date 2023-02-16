@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 M.setup = function(on_attach)
   local ok, null_ls = pcall(require, 'null-ls')

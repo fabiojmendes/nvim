@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 M.setup = function(on_attach)
   local ok, lspconfig = pcall(require, 'lspconfig')
@@ -29,7 +29,7 @@ M.setup = function(on_attach)
   })
 
   -- Lua configs
-  local sumneko_opts = vim.tbl_deep_extend('force', lsp_opts, {
+  local lua_opts = vim.tbl_deep_extend('force', lsp_opts, {
     settings = {
       Lua = {
         diagnostics = {
@@ -38,7 +38,7 @@ M.setup = function(on_attach)
       },
     },
   })
-  lspconfig.sumneko_lua.setup(sumneko_opts)
+  lspconfig.lua_ls.setup(lua_opts)
 end
 
 return M
