@@ -11,6 +11,7 @@ require('user.autopairs')
 require('user.diagnostics')
 require('user.cmp')
 require('user.nlsp')
+require('user.commands')
 
 local mappings = require('user.mappings')
 require('user.lsp').setup(mappings.lsp_mappings)
