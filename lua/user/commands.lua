@@ -1,4 +1,4 @@
-local function update_all()
+local update_all = function()
   vim.cmd('TSUpdate')
   vim.cmd('autocmd User PackerComplete quit')
   vim.cmd('autocmd User PackerComplete Mason')
