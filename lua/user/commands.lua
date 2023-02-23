@@ -1,6 +1,6 @@
 local update_all = function()
   vim.cmd('TSUpdate')
-  vim.cmd('autocmd User PackerComplete quit')
+  vim.cmd('autocmd User PackerComplete close')
   vim.cmd('autocmd User PackerComplete Mason')
   require('packer').sync()
 end
