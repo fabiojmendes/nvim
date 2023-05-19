@@ -38,12 +38,9 @@ packer.startup(function(use)
   use('nvim-lualine/lualine.nvim') -- Fancier statusline
   use('arkav/lualine-lsp-progress')
   -- Themes
-  -- use { "lunarvim/onedarker.nvim" }
-  -- use { 'LunarVim/onedarker.nvim', commit = 'b00dd21' }
   use('fabiojmendes/onedarker.nvim')
   use('LunarVim/darkplus.nvim')
-  use('EdenEast/nightfox.nvim')
-  use('folke/tokyonight.nvim')
+  use('navarasu/onedark.nvim')
   -- Add indentation guides even on blank lines
   use('lukas-reineke/indent-blankline.nvim')
   -- Add git related info in the signs columns and popups
