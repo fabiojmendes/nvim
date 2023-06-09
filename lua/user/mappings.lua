@@ -52,11 +52,12 @@ wk.register({
   e = { '<cmd>NvimTreeToggle<CR>', 'File Explorer' },
   c = { '<cmd>Bdelete<CR>', 'Close Buffer' },
   C = { '<cmd>silent bufdo bd<CR>', 'Close All Buffers' },
-  t = {
-    name = 'File Tree',
-    r = { '<cmd>NvimTreeRefresh<CR>', 'Refresh' },
-    f = { '<cmd>NvimTreeFindFile<CR>', 'Find File' },
-    c = { '<cmd>NvimTreeCollapse<CR>', 'Collapse' },
+  g = {
+    name = 'Git Diffview',
+    o = { '<cmd>DiffviewOpen<CR>', 'Diffview Open' },
+    c = { '<cmd>DiffviewClose<CR>', 'Diffview Close' },
+    h = { '<cmd>DiffviewFileHistory<CR>', 'Diffview File History' },
+    r = { '<cmd>DiffviewRefresh<CR>', 'Diffview Refresh' },
   },
 }, { prefix = '<leader>' })
 

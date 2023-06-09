@@ -75,6 +75,10 @@ packer.startup(function(use)
   use('windwp/nvim-autopairs') -- Autopairs, integrates with both cmp and treesitter
   -- Which Key
   use('folke/which-key.nvim')
+
+  -- Diffview.nvim
+  use('sindrets/diffview.nvim')
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
