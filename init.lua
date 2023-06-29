@@ -12,6 +12,7 @@ require('user.diagnostics')
 require('user.cmp')
 require('user.nlsp')
 require('user.commands')
+require('user.noice')
 
 local mappings = require('user.mappings')
 require('user.lsp').setup(mappings.lsp_mappings)
