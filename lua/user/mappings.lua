@@ -48,6 +48,7 @@ wk.register({
     z = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Fuzzy find in Buffer' },
     g = { '<cmd>Telescope grep_string<cr>', 'Grep' },
     d = { '<cmd>Telescope diagnostics<cr>', 'Diagnostics' },
+    n = { '<cmd>Telescope notify<cr>', 'Notifications' },
   },
   e = { '<cmd>NvimTreeToggle<CR>', 'File Explorer' },
   c = { '<cmd>Bdelete<CR>', 'Close Buffer' },
