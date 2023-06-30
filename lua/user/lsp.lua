@@ -13,10 +13,6 @@ M.setup = function(on_attach)
   local lsp_opts = {
     on_attach = on_attach,
     capabilities = capabilities,
-    handlers = {
-      ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded', width = 95 }),
-      ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
-    },
   }
 
   -- Mason
