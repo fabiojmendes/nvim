@@ -1,7 +1,4 @@
-# Neovim Config
+# 💤 LazyVim
 
-Testing again
-
-This is my Neovim config based on:
-- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
-- [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch)
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
