@@ -1,8 +1,12 @@
 return {
   -- add gruvbox
-  { "rmehri01/onenord.nvim" },
+  {
+    "rmehri01/onenord.nvim",
+    lazy = false,
+    priority = 1000,
+  },
 
-  -- Configure LazyVim to load gruvbox
+  -- Configure LazyVim to load onenord
   {
     "LazyVim/LazyVim",
     opts = {
