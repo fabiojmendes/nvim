@@ -11,3 +11,6 @@ if vim.fn.executable("gitui") == 1 then
     require("lazyvim.util").float_term({ "gitui" }, { cwd = require("lazyvim.util").get_root() })
   end, { desc = "gitui (root dir)" })
 end
+
+-- Use gl for diagnostics
+vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
