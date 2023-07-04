@@ -3,3 +3,5 @@
 -- Add any additional options here
 vim.opt.relativenumber = false
 vim.opt.list = false
+vim.opt.conceallevel = 0
+vim.opt.clipboard = ""
