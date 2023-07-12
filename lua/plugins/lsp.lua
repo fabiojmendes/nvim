@@ -20,4 +20,28 @@ return {
       },
     },
   },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function()
+      local nls = require("null-ls")
+      return {
+        sources = {
+          nls.builtins.formatting.stylua,
+          nls.builtins.formatting.yamlfmt.with({
+            extra_args = { "-formatter", "retain_line_breaks=true" },
+          }),
+        },
+      }
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      indent = {
+        enable = true,
+        disable = { "yaml" },
+      },
+    },
+  },
 }
