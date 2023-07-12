@@ -23,18 +23,17 @@ return {
 
   {
     "jose-elias-alvarez/null-ls.nvim",
-    opts = function()
+    opts = function(_, opts)
       local nls = require("null-ls")
-      return {
-        sources = {
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.yamlfmt.with({
-            extra_args = { "-formatter", "retain_line_breaks=true" },
-          }),
-        },
-      }
+      vim.list_extend(opts.sources, {
+        nls.builtins.formatting.black,
+        nls.builtins.formatting.yamlfmt.with({
+          extra_args = { "-formatter", "retain_line_breaks=true" },
+        }),
+      })
     end,
   },
+
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {

@@ -14,3 +14,5 @@ end
 
 -- Use gl for diagnostics
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+-- Maps <C-c> to <Esc> so it triggers abbreviations
+vim.keymap.set("i", "<c-c>", "<esc>", { desc = "Escape" })
