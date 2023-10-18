@@ -6,5 +6,5 @@
     name: (identifier) @_name (#match? @_name "^query"))
   (token_tree
     (raw_string_literal) @sql
-    (#offset! @sql 1 0 0 -1))
+    (#offset! @sql 0 3 0 -2))
 )
