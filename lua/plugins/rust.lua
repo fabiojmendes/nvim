@@ -12,10 +12,6 @@ return {
           },
           settings = {
             ["rust-analyzer"] = {
-              files = {
-                excludeDirs = { ".embuild/" },
-                watcherExclude = { ".embuild/" },
-              },
               cargo = {
                 allFeatures = true,
                 loadOutDirsFromCheck = true,
