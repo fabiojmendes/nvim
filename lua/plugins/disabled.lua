@@ -8,4 +8,8 @@ return {
     name = "catppuccin",
     enabled = false,
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    enabled = false,
+  },
 }
