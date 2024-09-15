@@ -10,6 +10,7 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    name = "markdown.nvim",
     enabled = false,
   },
 }
