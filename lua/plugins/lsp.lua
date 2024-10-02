@@ -26,6 +26,29 @@ return {
       inlay_hints = {
         enabled = false,
       },
+      setup = {
+        ltex = function(_, opts)
+          -- opts.autostart = false
+          opts.settings = {
+            ltex = {
+              dictionary = {
+                ["en-US"] = {},
+              },
+            },
+          }
+          opts.on_init = function(client)
+            local spell_file_name = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+            local spell_file = io.open(spell_file_name, "r")
+            if spell_file then
+              local dict = client.config.settings.ltex.dictionary["en-US"]
+              for line in spell_file:lines() do
+                table.insert(dict, line)
+              end
+              spell_file:close()
+            end
+          end
+        end,
+      },
     },
   },
 
