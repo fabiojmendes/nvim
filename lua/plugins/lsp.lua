@@ -65,7 +65,12 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        markdown = { "prettierd" },
+        markdown = { "dprint" },
+      },
+      formatters = {
+        dprint = {
+          prepend_args = { "--config", vim.fn.stdpath("config") .. "/dprint.json" },
+        },
       },
     },
   },

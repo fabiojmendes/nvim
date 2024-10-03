@@ -2,9 +2,6 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      -- filesystem = {
-      --   follow_current_file.enabled = false,
-      -- },
       default_component_configs = {
         icon = {
           folder_empty = "",
