@@ -29,10 +29,16 @@ return {
       setup = {
         ltex = function(_, opts)
           -- opts.autostart = false
+          opts.root_dir = require("lazyvim.util").root.get()
           opts.settings = {
             ltex = {
+              language = "en-US",
               dictionary = {
                 ["en-US"] = {},
+              },
+              languageToolHttpServerUri = vim.env.LANGUAGE_TOOL_HTTP_SERVER_URI,
+              additionalRules = {
+                enablePickyRules = true,
               },
             },
           }

@@ -5,10 +5,10 @@
 if vim.fn.executable("gitui") == 1 then
   -- gitui instead of lazygit
   vim.keymap.set("n", "<leader>gg", function()
-    require("lazyvim.util").float_term({ "gitui" })
+    require("lazyvim.util").terminal.open({ "gitui" })
   end, { desc = "gitui (cwd)" })
   vim.keymap.set("n", "<leader>gG", function()
-    require("lazyvim.util").float_term({ "gitui" }, { cwd = require("lazyvim.util").get_root() })
+    require("lazyvim.util").terminal.open({ "gitui" }, { cwd = require("lazyvim.util").root.get() })
   end, { desc = "gitui (root dir)" })
 end
 
