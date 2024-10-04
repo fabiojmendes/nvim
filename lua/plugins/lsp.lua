@@ -16,6 +16,7 @@ return {
       })
     end,
   },
+
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -28,13 +29,19 @@ return {
       },
       setup = {
         ltex = function(_, opts)
+          local lang = "en-US"
           -- opts.autostart = false
           opts.root_dir = require("lazyvim.util").root.get()
           opts.settings = {
             ltex = {
-              language = "en-US",
+              language = lang,
               dictionary = {
-                ["en-US"] = {},
+                [lang] = {},
+              },
+              markdown = {
+                nodes = {
+                  ["Link"] = "dummy",
+                },
               },
               languageToolHttpServerUri = vim.env.LANGUAGE_TOOL_HTTP_SERVER_URI,
               additionalRules = {
@@ -46,7 +53,7 @@ return {
             local spell_file_name = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
             local spell_file = io.open(spell_file_name, "r")
             if spell_file then
-              local dict = client.config.settings.ltex.dictionary["en-US"]
+              local dict = client.config.settings.ltex.dictionary[lang]
               for line in spell_file:lines() do
                 table.insert(dict, line)
               end
@@ -67,6 +74,7 @@ return {
       },
     },
   },
+
   {
     "stevearc/conform.nvim",
     opts = {
