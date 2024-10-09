@@ -27,6 +27,14 @@ return {
       inlay_hints = {
         enabled = false,
       },
+      servers = {
+        ltex = {
+          mason = false,
+          keys = {
+            { "K", require("user.dictionary").word_under_cursor },
+          },
+        },
+      },
       setup = {
         ltex = function(_, opts)
           local lang = "en-US"
