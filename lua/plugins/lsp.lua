@@ -31,7 +31,17 @@ return {
         ltex = {
           mason = false,
           keys = {
-            { "K", require("user.dictionary").word_under_cursor },
+            {
+              "K",
+              function()
+                local bufnr = vim.api.nvim_get_current_buf()
+                if vim.lsp.get_clients({ bufnr = bufnr, name = "ltex" }) then
+                  require("user.dictionary").word_under_cursor()
+                else
+                  vim.lsp.hover()
+                end
+              end,
+            },
           },
         },
       },
