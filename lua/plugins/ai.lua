@@ -1,6 +1,7 @@
 return {
   {
     "robitx/gp.nvim",
+    lazy = true,
     config = function()
       local conf = {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
