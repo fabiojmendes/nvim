@@ -17,19 +17,6 @@ return {
     },
   },
   {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-    keys = {
-      { "<leader>fh", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files (Hidden)" },
-    },
-  },
-  {
     "echasnovski/mini.surround",
     opts = {
       -- Module mappings. Use `''` (empty string) to disable one.
