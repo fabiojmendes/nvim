@@ -1,22 +1,5 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      default_component_configs = {
-        icon = {
-          folder_empty = "",
-          folder_empty_open = "",
-        },
-        git_status = {
-          symbols = {
-            unstaged = "",
-            staged = "",
-          },
-        },
-      },
-    },
-  },
-  {
     "echasnovski/mini.surround",
     opts = {
       -- Module mappings. Use `''` (empty string) to disable one.
