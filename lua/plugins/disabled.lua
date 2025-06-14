@@ -4,6 +4,14 @@ return {
     enabled = false,
   },
   {
+    "folke/noice.nvim",
+    enabled = false,
+  },
+  {
+    "rafamadriz/friendly-snippets",
+    enabled = false,
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     enabled = false,
