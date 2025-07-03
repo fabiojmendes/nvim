@@ -11,6 +11,11 @@ return {
           "fallback",
         },
       },
+      completion = {
+        ghost_text = {
+          enabled = false,
+        },
+      },
     },
   },
   {
