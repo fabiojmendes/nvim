@@ -1,4 +1,4 @@
-;; extends
+;extends
 
 (macro_invocation
   (scoped_identifier
