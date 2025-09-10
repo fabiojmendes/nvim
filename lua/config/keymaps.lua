@@ -16,3 +16,7 @@ end
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 -- Maps <C-c> to <Esc> so it triggers abbreviations
 vim.keymap.set("i", "<c-c>", "<esc>", { desc = "Escape" })
+
+-- Map mac keys to alt-j & alt-k
+vim.cmd("map ∆ <M-j>")
+vim.cmd("map ˚ <M-k>")
