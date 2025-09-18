@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     opts = {
       -- Module mappings. Use `''` (empty string) to disable one.
       mappings = {
