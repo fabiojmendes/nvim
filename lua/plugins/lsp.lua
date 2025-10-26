@@ -23,7 +23,17 @@ return {
       inlay_hints = {
         enabled = false,
       },
-      servers = {},
+      servers = {
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = "standard",
+              },
+            },
+          },
+        },
+      },
       setup = {},
     },
   },
