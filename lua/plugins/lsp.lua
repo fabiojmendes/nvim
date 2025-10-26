@@ -43,7 +43,7 @@ return {
     opts = {
       formatters_by_ft = {
         markdown = { "dprint" },
-        javascript = { "prettierd" },
+        javascript = { "biome" },
       },
       formatters = {
         dprint = {
