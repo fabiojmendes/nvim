@@ -54,6 +54,7 @@ return {
       formatters_by_ft = {
         markdown = { "dprint" },
         javascript = { "biome" },
+        typescript = { "biome" },
       },
       formatters = {
         dprint = {
