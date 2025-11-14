@@ -6,3 +6,8 @@
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 -- Maps <C-c> to <Esc> so it triggers abbreviations
 vim.keymap.set("i", "<c-c>", "<esc>", { desc = "Escape" })
+
+-- Plus register mappings
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank into plus register" })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from plus register" })
+vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste before from plus register" })
