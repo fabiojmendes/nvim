@@ -9,6 +9,14 @@ return {
       preview = {
         enable = false,
       },
+      markdown = {
+        headings = {
+          shift_width = 0,
+        },
+        list_items = {
+          shift_width = 0,
+        },
+      },
     },
     keys = {
       {

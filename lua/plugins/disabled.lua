@@ -17,11 +17,6 @@ return {
     enabled = false,
   },
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    name = "markdown.nvim",
-    enabled = false,
-  },
-  {
     "folke/tokyonight.nvim",
     enabled = false,
   },
