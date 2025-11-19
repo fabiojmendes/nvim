@@ -3,9 +3,18 @@
 -- Add any additional autocmds here
 
 -- Force 4 spaces indentation for specific files
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = { "fish" },
---   callback = function()
---     vim.opt_local.shiftwidth = 4
---   end,
--- })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "fish" },
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+  end,
+})
+
+-- Markdown preferences
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function()
+    vim.opt_local.wrap = false
+    vim.opt_local.textwidth = 80
+  end,
+})
