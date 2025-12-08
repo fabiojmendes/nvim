@@ -55,6 +55,8 @@ return {
         markdown = { "dprint" },
         javascript = { "biome" },
         typescript = { "biome" },
+        javascriptreact = { "biome" },
+        typescriptreact = { "biome" },
       },
       formatters = {
         dprint = {
