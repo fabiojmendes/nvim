@@ -16,6 +16,7 @@ return {
     -- Disable semantic tokens for rust strings tree-sitter injections will work
     init = function()
       vim.api.nvim_set_hl(0, "@lsp.type.string.rust", {})
+      vim.api.nvim_set_hl(0, "@lsp.mod.macro.rust", {})
     end,
   },
 }
