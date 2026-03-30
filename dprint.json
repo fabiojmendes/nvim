@@ -1,9 +1,9 @@
 {
   "markdown": {
-    "textWrap": "always",
+    "textWrap": "always"
   },
   "excludes": [],
   "plugins": [
-    "https://plugins.dprint.dev/markdown-0.20.0.wasm"
+    "https://plugins.dprint.dev/markdown-0.21.1.wasm"
   ]
 }
