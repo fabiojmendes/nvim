@@ -1,34 +1,5 @@
 return {
   {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-
-    -- Completion for `blink.cmp`
-    dependencies = { "saghen/blink.cmp" },
-    config = {
-      preview = {
-        enable = false,
-      },
-      markdown = {
-        headings = {
-          shift_width = 0,
-        },
-        list_items = {
-          shift_width = 0,
-        },
-      },
-    },
-    keys = {
-      {
-        "<leader>um",
-        ft = "markdown",
-        "<cmd>Markview toggle<cr>",
-        desc = "Toggle Markview",
-      },
-    },
-  },
-
-  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = function()
