@@ -4,6 +4,6 @@
   },
   "excludes": [],
   "plugins": [
-    "npm:@dprint/markdown@0.23.3"
+    "npm:@dprint/markdown@0.26.0"
   ]
 }

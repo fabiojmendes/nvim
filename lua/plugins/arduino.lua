@@ -1,3 +1,8 @@
+-- 1. Early exit: If the arduino-cli binary isn't in your PATH, ignore this entire file
+if vim.fn.executable("arduino-cli") == 0 then
+  return {}
+end
+
 return {
   -- Ensure the required language servers are downloaded via Mason
   {
