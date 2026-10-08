@@ -58,11 +58,6 @@ return {
         javascriptreact = { "biome" },
         typescriptreact = { "biome" },
       },
-      formatters = {
-        dprint = {
-          prepend_args = { "--config", vim.fn.stdpath("config") .. "/dprint.json" },
-        },
-      },
     },
   },
 }
